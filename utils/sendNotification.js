@@ -2,9 +2,11 @@ const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const { WPP_URL, EMAIL_USER, EMAIL_PASS, EMAIL_TO } = process.env;
+
 const sendWpp = async (site, title, link) => {
   try {
-    const response = await fetch(process.env.WPP_URL, {
+    const response = await fetch(WPP_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,14 +36,14 @@ const sendEmail = async (subject, title, href) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      user: EMAIL_USER,
+      pass: EMAIL_PASS,
     },
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: [...process.env.EMAIL_TO.split(",")],
+    from: EMAIL_USER,
+    to: [...EMAIL_TO.split(",")],
     subject,
     text: `Novo anúncio encontrado: ${title} - ${href || "N/A"}`,
   };
