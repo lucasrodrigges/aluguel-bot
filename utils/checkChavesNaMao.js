@@ -56,17 +56,17 @@ const checkChavesNaMao = async (browser) => {
 
       if (!alreadySaved) {
         console.log("Novo anuncio encontrado:", listing.name, '✅');
-        const { success: emailSuccess } = await sendEmail(
-          'Novo anúncio encontrado no Chaves na Mão',
-          listing.name,
-          listing.link || ZAP_URL
-        );
+        // const { success: emailSuccess } = await sendEmail(
+        //   'Novo anúncio encontrado no Chaves na Mão',
+        //   listing.name,
+        //   listing.link || ZAP_URL
+        // );
         const { success } = await sendWpp(
           'Chaves na Mão',
           listing.name,
           listing.link
         );
-        if (success || emailSuccess) {
+        if (success) {
           listings.push(listing);
           newFoundCount++;
         }

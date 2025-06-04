@@ -41,17 +41,17 @@ const checkOlx = async (browser) => {
 
       if (!alreadySaved) {
         console.log("Novo anuncio encontrado:", listing.name, '✅');
-        const { success: emailSuccess } = await sendEmail(
-          'Novo anuncio encontrado na OLX',
-          listing.name,
-          listing.link
-        );
+        // const { success: emailSuccess } = await sendEmail(
+        //   'Novo anuncio encontrado na OLX',
+        //   listing.name,
+        //   listing.link
+        // );
         const { success } = await sendWpp(
           'OLX',
           listing.name,
           listing.link
         );
-        if (success || emailSuccess) {
+        if (success) {
           listings.push(listing);
           newFoundCount++;
         }

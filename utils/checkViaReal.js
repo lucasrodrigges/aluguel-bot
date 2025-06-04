@@ -48,17 +48,17 @@ const checkVivaReal = async (browser) => {
 
       if (!alreadySaved) {
         console.log("Novo anuncio encontrado:", listing.name, '✅');
-        const { success: emailSuccess } = await sendEmail(
-          'Novo anuncio encontrado no Viva Real',
-          listing.name,
-          listing.link || ZAP_URL
-        );
+        // const { success: emailSuccess } = await sendEmail(
+        //   'Novo anuncio encontrado no Viva Real',
+        //   listing.name,
+        //   listing.link || ZAP_URL
+        // );
         const { success } = await sendWpp(
           'Viva Real',
           listing.name,
           listing.link
         );
-        if (success || emailSuccess) {
+        if (success) {
           listings.push(listing);
           newFoundCount++;
         }

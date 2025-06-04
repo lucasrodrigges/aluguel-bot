@@ -48,17 +48,17 @@ const checkZapImoveis = async (browser) => {
 
       if (!alreadySaved) {
         console.log("Novo anuncio encontrado:", listing.name, '✅');
-        const { success: emailSuccess } = await sendEmail(
-          'Novo anuncio encontrado no ZapImoveis',
-          listing.name,
-          listing.link || ZAP_URL
-        );
+        // const { success: emailSuccess } = await sendEmail(
+        //   'Novo anuncio encontrado no ZapImoveis',
+        //   listing.name,
+        //   listing.link || ZAP_URL
+        // );
         const { success } = await sendWpp(
           'ZAP Imóveis',
           listing.name,
           listing.link
         );
-        if (success || emailSuccess) {
+        if (success) {
           listings.push(listing);
           newFoundCount++;
         }

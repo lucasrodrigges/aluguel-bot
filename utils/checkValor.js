@@ -48,11 +48,11 @@ const checkValor = async (browser) => {
       if (!alreadySaved) {
         console.log("Novo anúncio encontrado:", listing.name, '✅');
 
-        const { success: emailSuccess } = await sendEmail(
-          'Novo anúncio encontrado no Valor',
-          listing.name,
-          listing.link || ''
-        );
+        // const { success: emailSuccess } = await sendEmail(
+        //   'Novo anúncio encontrado no Valor',
+        //   listing.name,
+        //   listing.link || ''
+        // );
 
         const { success: wppSuccess } = await sendWpp(
           'Valor',
@@ -60,7 +60,7 @@ const checkValor = async (browser) => {
           listing.link
         );
 
-        if (emailSuccess || wppSuccess) {
+        if (wppSuccess) {
           listings.push(listing);
           newFoundCount++;
         }
