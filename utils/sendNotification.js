@@ -13,7 +13,7 @@ const sendWpp = async (site, title, link) => {
       },
       body: JSON.stringify({
         site,
-        title,
+        title: `*${title}*`,
         link,
       }),
     })
